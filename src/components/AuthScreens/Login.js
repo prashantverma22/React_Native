@@ -30,16 +30,6 @@ const Login = () => {
 
     const navigation = useNavigation();
 
-    //navigating to the 'Home' screen and this screen will be visible in the Drawer.
-    const onClick = () => {
-        navigation.navigate('AppDrawer', {
-            // email,
-            // pass
-            screen: 'Home'
-            //params: { email, pass }
-        });
-    }
-
     //validating input fields with the help of regular expressions
     const validateForm = () => {
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
@@ -75,12 +65,13 @@ const Login = () => {
             setPassError(false);
         }
 
-        alert("Success");
+        alert("Successfully Logged In");
         navigation.navigate('AppDrawer', {
             screen: 'Home'
         });
     }
 
+    //reading data from async storage
     const readData = async () => {
         try {
             const data = await AsyncStorage.getItem('user');
@@ -99,28 +90,24 @@ const Login = () => {
 
     return (
         <View>
-            {/* <Header /> */}
             <ImageBackground source={image} style={styles.img}>
                 <Image source={{
                     uri: "https://www.pikpng.com/pngl/m/60-602888_logo-globe-png-globe-clip-art-transparent-png.png"
                 }} style={styles.logo} />
                 <View style={styles.container}>
                     <TextInput onChangeText={e => setEmail(e)}
-                        placeholder="Enter your email" style={styles.ip} />
+                        placeholder="Enter your email" style={styles.input} />
 
                     {emailError && <Text style={{ color: "red" }}>Invalid Email</Text>}
 
                     <TextInput onChangeText={p => setPass(p)}
-                        placeholder="Enter your password" style={styles.ip} secureTextEntry={true} />
+                        placeholder="Enter your password" style={styles.input} secureTextEntry={true} />
                     {passError && <Text style={{ color: "#FF0000" }}>Invalid Password</Text>}
 
                     <TouchableOpacity style={styles.btn} onPress={() => validateForm()}>
                         <Text style={{ color: "#FFFFFF" }}>Login</Text>
                     </TouchableOpacity >
                 </View>
-                {/* <TouchableOpacity style={styles.link} onPress={onClick}>
-                    <Text style={styles.txt}>Go to Home Page</Text>
-                </TouchableOpacity> */}
             </ImageBackground>
         </View>
     );
@@ -149,11 +136,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         margin: 15
     },
-    ip: {
+    input: {
         width: '80%',
         padding: 10,
         margin: 10,
         fontSize: 16,
+        fontWeight: "bold",
         borderRadius: 10,
         backgroundColor: "#0EB2BF"
     },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
@@ -26,16 +26,6 @@ const Header = ({ name, showBack = true, leftIcon = null }) => {
                     <Icon type="Ionicons" name="menu-sharp" style={styles.icon} />
                 </TouchableOpacity>
             </View>
-
-            {/* Displaying data through FlatList */}
-            {/* <View style={styles.list} >
-                <FlatList data={Items} renderItem={
-                    ({ item }) => (
-                        <Text style={styles.text}>{item.name}</Text>
-                    )
-                }
-                />
-            </View> */}
         </>
     );
 }

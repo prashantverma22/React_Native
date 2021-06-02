@@ -102,7 +102,7 @@ const UserList = () => {
                 ({ item }) => {
                     return (
                         <View>
-                            <TouchableOpacity style={styles.view}
+                            <TouchableOpacity style={styles.mainView}
                                 onPress={() => {
                                     //navigating the data on the 'User Detail' screen in the form of an object.
                                     navigation.navigate('User Detail', {
@@ -113,7 +113,7 @@ const UserList = () => {
                                     });
                                 }} >
                                 <Image source={{ uri: item.avatar }} style={styles.avtar} />
-                                <View style={styles.vew}>
+                                <View style={styles.nestedView}>
                                     <Text style={styles.text}>{item.first_name} {item.last_name}</Text>
                                     <Text>{item.email}</Text>
                                 </View>
@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 100
     },
-    view: {
+    mainView: {
         flexDirection: "row",
         padding: 16,
     },
-    vew: {
+    nestedView: {
         flexDirection: "column",
         padding: 20,
         margin: 12

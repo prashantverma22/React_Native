@@ -4,10 +4,8 @@ import Header from '../Common/Header';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ImagePicker from 'react-native-image-crop-picker';
 import { Icon } from 'native-base';
-import { Avatar } from 'react-native-elements';
 
-const Profile = ({ route }) => {
-    // const { name, email } = route.params;
+const Profile = () => {
 
     //initializing states for input fields that is to be edited.
     const [img, setImg] = useState("https://reqres.in/img/faces/2-image.jpg");
@@ -20,6 +18,7 @@ const Profile = ({ route }) => {
     //edit mode
     const [editMode, setEditMode] = useState(false);
 
+    //reading data from async storage
     const readData = async () => {
         try {
             const data = await AsyncStorage.getItem('user');
@@ -64,7 +63,7 @@ const Profile = ({ route }) => {
         catch (e) {
             alert(e);
         }
-        console.log("saved");
+        console.log("data saved in async storage");
     }
 
     const validate = () => {
@@ -145,11 +144,7 @@ const Profile = ({ route }) => {
             } />
             <View>
                 <View style={styles.view}>
-                    {/* <TouchableOpacity onPress={() => setModalOpen(true)}  > */}
                     <Image source={{ uri: img }} style={styles.img} />
-                    {/* <Avatar rounded size="xlarge" title="PV" avatarStyle={{ borderWidth: 3 }} /> */}
-                    {/* </TouchableOpacity> */}
-
                     {editMode ?
                         <Pressable style={styles.cameraIcon} onPress={() => setModalOpen(true)}>
                             <Icon type="Ionicons" name="camera" />
@@ -174,11 +169,11 @@ const Profile = ({ route }) => {
                 </Modal>
 
                 <View style={styles.fields}>
-                    <TextInput editable={editMode} style={styles.ip} onChangeText={itr => setMyMail(itr)} value={myMail} />
+                    <TextInput editable={editMode} style={styles.textInput} onChangeText={itr => setMyMail(itr)} value={myMail} />
 
-                    <TextInput editable={editMode} style={styles.ip} onChangeText={itr => setMyName(itr)} value={myName} />
+                    <TextInput editable={editMode} style={styles.textInput} onChangeText={itr => setMyName(itr)} value={myName} />
 
-                    <TextInput editable={editMode} style={styles.ip} onChangeText={itr => setMyNum(itr)} value={myNum} />
+                    <TextInput editable={editMode} style={styles.textInput} onChangeText={itr => setMyNum(itr)} value={myNum} />
 
                 </View>
 
@@ -206,7 +201,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         padding: 10,
     },
-    ip: {
+    textInput: {
         width: "90%",
         padding: 10,
         margin: 10,

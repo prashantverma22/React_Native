@@ -10,17 +10,13 @@ const Password = () => {
     const [conPass, setConPass] = useState("");  //confirm password
     const [savePass, setSavePass] = useState("")  // storing password coming from signup page
 
+    //reading data from async storage
     const readData = async () => {
         try {
             AsyncStorage.getItem('user').then((res) => {
                 let userPass = JSON.parse(res);
                 setSavePass(userPass.password);
-                // console.log(userPass);
             });
-            // const value = await AsyncStorage.getItem('user');
-            // let userPass = JSON.parse(value);
-            // setSavePass(userPass.password);
-            // console.log(value);
 
         } catch (error) {
             console.log(error);
@@ -31,18 +27,17 @@ const Password = () => {
         readData();
     }, [])
 
+    //saving data in async storage
     const saveData = async () => {
         try {
             let data = await AsyncStorage.getItem('user');
             let value = JSON.parse(data);
             value.password = newPass;
-            // console.log(value);
             await AsyncStorage.setItem('user', JSON.stringify(value));
         }
         catch (error) {
             console.log(error);
         }
-        console.log("Password save() working.")
     }
 
     const validate = () => {
@@ -92,13 +87,11 @@ const Password = () => {
         <>
             <Header name="Change Password" style={styles.header} />
             <View style={styles.view}>
-                {/* <Text>{savePass?.name}</Text> */}
-                <Text></Text>
-                <TextInput style={styles.ip} onChangeText={itr => setOldPass(itr)} placeholder="Old Password" secureTextEntry={true} />
+                <TextInput style={styles.textInput} onChangeText={itr => setOldPass(itr)} placeholder="Old Password" secureTextEntry={true} />
 
-                <TextInput style={styles.ip} onChangeText={itr => setNewPass(itr)} placeholder="New Password" secureTextEntry={true} />
+                <TextInput style={styles.textInput} onChangeText={itr => setNewPass(itr)} placeholder="New Password" secureTextEntry={true} />
 
-                <TextInput style={styles.ip} onChangeText={itr => setConPass(itr)} placeholder="Confirm Password" secureTextEntry={true} />
+                <TextInput style={styles.textInput} onChangeText={itr => setConPass(itr)} placeholder="Confirm Password" secureTextEntry={true} />
 
                 <TouchableOpacity onPress={validate} style={styles.button}>
                     <Text style={styles.buttonContent}>Change Password</Text>
@@ -111,7 +104,7 @@ const Password = () => {
 export default Password;
 
 const styles = StyleSheet.create({
-    ip: {
+    textInput: {
         width: "90%",
         padding: 10,
         margin: 10,

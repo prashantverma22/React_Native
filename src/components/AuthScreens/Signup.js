@@ -26,8 +26,6 @@ const Signup = () => {
     const [pass, setPass] = useState("Pr@sh22");
     const [con, setCon] = useState("Pr@sh22");
 
-    // const [modalOpen, setModalOpen] = useState(false);
-
     const navigation = useNavigation();
 
     //validating input fields with the help of regular expressions.
@@ -35,7 +33,6 @@ const Signup = () => {
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
         const nameReg = /^(?![\s.]+$)[a-zA-Z\s.]*$/;
         const numReg = /\+?\d[\d -]{8,12}\d/;
-        // const passReg = /^[a-zA-Z]\w{3,14}$/;
         const passReg = /^[A-Z]{1}[a-z0-9@#$_]{6}/
 
         if (!(email && name && num && pass && con)) {
@@ -91,9 +88,6 @@ const Signup = () => {
         else {
             saveData();
             navigation.navigate('Login');
-            //  , {
-            // screen: 'Profile',
-            //params: { email, name }
         }
     }
 
@@ -110,9 +104,9 @@ const Signup = () => {
             await AsyncStorage.setItem('user', val);
         }
         catch (e) {
-            //save error
+            console.log(e);
         }
-        console.log("Done.");
+        console.log("saving data in async storage");
     }
 
     return (
@@ -121,40 +115,23 @@ const Signup = () => {
                 <Image source={{ uri: "https://www.pikpng.com/pngl/m/60-602888_logo-globe-png-globe-clip-art-transparent-png.png" }} style={styles.logo} />
                 <View style={styles.container}>
                     <TextInput value={email} onChangeText={e => setEmail(e)}
-                        placeholder="Enter your email" style={styles.ip} />
+                        placeholder="Enter your email" style={styles.input} />
 
                     <TextInput value={name} onChangeText={n => setName(n)}
-                        placeholder="Enter your name" style={styles.ip} />
+                        placeholder="Enter your name" style={styles.input} />
 
                     <TextInput value={num} onChangeText={c => setNum(c)}
-                        placeholder="Enter your contact number" style={styles.ip} />
+                        placeholder="Enter your contact number" style={styles.input} />
 
                     <TextInput value={pass} onChangeText={p => setPass(p)}
-                        placeholder="Enter your password" style={styles.ip} secureTextEntry={true} />
+                        placeholder="Enter your password" style={styles.input} secureTextEntry={true} />
 
                     <TextInput value={con} onChangeText={i => setCon(i)}
-                        placeholder="Confirm password" style={styles.ip} secureTextEntry={true} />
+                        placeholder="Confirm password" style={styles.input} secureTextEntry={true} />
 
                     <TouchableOpacity style={styles.button} onPress={validateAndNavigate}>
                         <Text style={{ color: "#FFFFFF" }}>Sign Up</Text>
                     </TouchableOpacity>
-
-                    {/* <Modal animationType="slide" visible={modalOpen}
-                        onRequestClose={() => {
-                            Alert.alert("Modal closed.")
-                            setModalOpen(!modalOpen);
-                        }}>
-                        <View>
-                            <Pressable onPress={() => setModalOpen(!modalOpen)}>
-                                <Text>Hide</Text>
-                            </Pressable>
-                        </View>
-                    </Modal>
-
-                    <Pressable onPress={() => setModalOpen(true)}>
-                        <Text>show</Text>
-                    </Pressable> */}
-
                 </View>
             </ImageBackground>
         </View>
@@ -183,7 +160,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         margin: 15
     },
-    ip: {
+    input: {
         width: "100%",
         padding: 10,
         margin: 10,

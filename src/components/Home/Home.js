@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Home = ({ route, navigation }) => {
-    // const { email, pass } = route.params;
+const Home = () => {
 
     const [name, setName] = useState("");
 
+    //reading data from async storage
     const readData = async () => {
         const data = await AsyncStorage.getItem('user');
         let username = JSON.parse(data);
@@ -20,9 +19,6 @@ const Home = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* <Text style={styles.txt} >{ JSON.stringify(email) }</Text>
-            <Text style={styles.txt} >{ JSON.stringify(pass) }</Text> */}
-
             <Text style={styles.heading}>Welcome {name}</Text>
             <Text style={styles.txt}>You have registered successfully</Text>
         </View>
