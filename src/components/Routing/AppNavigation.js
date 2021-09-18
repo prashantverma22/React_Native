@@ -8,6 +8,7 @@ import UserList from '../Users/UserList';
 import UserDetail from '../Users/UserDetail';
 import Profile from '../Users/Profile';
 import Password from '../Users/Password';
+import Responsive from '../Other/Responsive';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -41,7 +42,8 @@ const SignUp = () => {
 const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }} >
+      <Stack.Navigator initialRouteName="SignUp" screenOptions={{ headerShown: false }} >
+        <Stack.Screen name="Responsive" component={Responsive} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="User Detail" component={UserDetail} />
         <Stack.Screen name="Login" component={Login} />

@@ -95,12 +95,12 @@ const Login = () => {
                     uri: "https://www.pikpng.com/pngl/m/60-602888_logo-globe-png-globe-clip-art-transparent-png.png"
                 }} style={styles.logo} />
                 <View style={styles.container}>
-                    <TextInput onChangeText={e => setEmail(e)}
+                    <TextInput value={email} onChangeText={e => setEmail(e)}
                         placeholder="Enter your email" style={styles.input} />
 
                     {emailError && <Text style={{ color: "red" }}>Invalid Email</Text>}
 
-                    <TextInput onChangeText={p => setPass(p)}
+                    <TextInput value={pass} onChangeText={p => setPass(p)}
                         placeholder="Enter your password" style={styles.input} secureTextEntry={true} />
                     {passError && <Text style={{ color: "#FF0000" }}>Invalid Password</Text>}
 

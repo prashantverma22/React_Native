@@ -146,9 +146,9 @@ const Profile = () => {
                 <View style={styles.view}>
                     <Image source={{ uri: img }} style={styles.img} />
                     {editMode ?
-                        <Pressable style={styles.cameraIcon} onPress={() => setModalOpen(true)}>
+                        <TouchableOpacity style={styles.cameraIcon} onPress={() => setModalOpen(true)}>
                             <Icon type="Ionicons" name="camera" />
-                        </Pressable> : null}
+                        </TouchableOpacity> : null}
 
                 </View>
 
@@ -156,15 +156,15 @@ const Profile = () => {
                     setModalOpen(!modalOpen);
                 }}>
                     <View style={styles.modalView}>
-                        <Pressable onPress={takeFromCamera} style={styles.press}>
+                        <TouchableOpacity onPress={takeFromCamera} style={styles.press}>
                             <Text style={styles.text}>Open Camera</Text>
-                        </Pressable>
-                        <Pressable onPress={chooseFromGallery} style={styles.press}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={chooseFromGallery} style={styles.press}>
                             <Text style={styles.text}>Open Gallery</Text>
-                        </Pressable>
-                        <Pressable onPress={() => setModalOpen(false)} style={styles.cancel}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => setModalOpen(false)} style={styles.cancel}>
                             <Text style={styles.text}>Cancel</Text>
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
                 </Modal>
 
